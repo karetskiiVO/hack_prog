@@ -1,0 +1,47 @@
+Turbo Assembler	 Version 4.1	    03/13/23 18:21:25	    Page 1
+testhack.asm
+
+
+
+      1				     .286
+      2	0000			     .model tiny
+      3	0000			     .code
+      4				     org 100h
+      5	0100			     Start:
+      6	0100  33 C0		     xor ax, ax
+      7	0102  BB 01D8		     mov bx, 01d8h
+      8	0105  FF E3		     jmp bx
+      9
+     10				     end Start
+Turbo Assembler	 Version 4.1	    03/13/23 18:21:25	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/13/23"
+??FILENAME			  Text	 "testhack"
+??TIME				  Text	 "18:21:25"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0707H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 TESTHACK
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+START				  Near	 DGROUP:0100
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+  _TEXT				  16  0107 Word	  Public  CODE
+
