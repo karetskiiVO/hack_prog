@@ -4,8 +4,8 @@
 
 int main () {
     char* prog = NULL;
-    size_t cnt = uploadprogramm(&prog, "PASSWORD.COM");
+    size_t cnt = uploadprogramm(&prog, "PSD.COM");
 
-    printf("%s\n%lu\n", prog, proghash(prog, cnt));
+    printf("%lu\n", proghash(prog, cnt));
     return 0;
 }

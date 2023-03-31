@@ -20,7 +20,7 @@ int main () {
     sf::Vector2u resolution(800, 600);
     sf::Vector2u hackersize(500, 432);
     sf::RenderWindow window(sf::VideoMode(resolution.x, resolution.y), "h@ck.exe");
-    sf::String dialog[] = { "Oh, you forgot password?\nUnderstandble,...\nShow me PASSWOR.COM?" ,
+    sf::String dialog[] = { "Oh, you forgot password?\nUnderstandble,...\nShow me PASSWORD.COM?" ,
                             "Why you can't, its already done."                      ,
                             "I can't see file"                                      ,
                             "It's looking strange.\nI don't know what is it."       ,
@@ -60,9 +60,17 @@ int main () {
                                     break;
                                 }
                                 
-
-
-
+                                if (isnothacked(prog, progsize)) {
+                                    dialogit = 4;
+                                    makecrack();
+                                } else if (ishacked(prog, progsize)) {
+                                    dialogit = 1;
+                                } else {
+                                    dialogit = 3;
+                                }
+                                
+                                free(prog);
+                                prog = NULL;
                                 break;
                             default:
                                 dialogit = 0;                           

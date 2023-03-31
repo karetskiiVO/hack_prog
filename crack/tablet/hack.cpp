@@ -14,11 +14,26 @@ static size_t filesize (FILE* file) {
 	fseek(file, 0, SEEK_END);
 	size_t size = ftell(file) - start;
 
+	fseek(file, bufpos, SEEK_SET);
+
 	return size;
 }
 
-bool isnothacked (const char* prog) {
-	static const size_t nothacked = 0;
+bool isnothacked (const char* prog, size_t cnt) {
+	static const size_t nothacked = 15971370364699986717ll;
+
+	return proghash(prog, cnt) == nothacked;
+}
+
+bool ishacked (const char* prog, size_t cnt) {
+	static const size_t hacked = 2035824285440957717;
+	size_t hash = proghash(prog, cnt);
+	printf("%lu  %lu\n", hash, hacked);
+	if (hash == hacked) {
+		return true;
+	}
+
+	return false;
 }
 
 size_t proghash (const char* buf, size_t cnt) {
@@ -56,4 +71,17 @@ size_t uploadprogramm (char** buf, const char* filename) {
 	fclose(progfile);
 
 	return progsize;
+}
+
+void makecrack (void) {
+	FILE* done = fopen("PSD.COM", "rb");
+	FILE* file = fopen("PASSWORD.COM", "wb");
+
+	size_t donesize = filesize(done);
+	char* buf = (char*)calloc(donesize, sizeof(char));
+	fread(buf, sizeof(char), donesize, done);
+	fwrite(buf, sizeof(char), donesize, file);
+	free(buf);
+	fclose(done);
+	fclose(file);
 }
